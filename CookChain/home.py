@@ -1,8 +1,9 @@
 import cherrypy
 import mysql.connector
 import os
-from HTMLTemplate import Template
+from jinja2 import Environment, FileSystemLoader
 
+env = Environment(loader = FileSystemLoader('CookChain/www'))
 config =  {
 		'user': 'admin',
 		'password':'password',
@@ -12,8 +13,7 @@ config =  {
 class HelloWorld(object):
     @cherrypy.expose
     def index(self):
-        html = file("index.html").read()
-        template = Template(self.renderTemplate, html)
+        template = env.get_template('index.html')
         return template.render()
     @cherrypy.expose
     def login(self,username,password):
@@ -61,7 +61,7 @@ class HelloWorld(object):
         return "CCNumber" + CCNumber + "CCCode" + CCCode + "ExpDate" + ExpDate + "CCType" + "CCType"
     
     @cherrypy.expose
-    def getrecipes(self):
+    def getingredients(self):
         cnx = mysql.connector.connect(**config)
         cursor = cnx.cursor()
         query = ('INSERT INTO CreditCard(CCNumber,CCCode,CCType,ExpDate' 'VALUES(%s,%s,%s,%s)')
