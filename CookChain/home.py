@@ -41,8 +41,27 @@ class HelloWorld(object):
         data = (CCNumber,CCCode,ExpDate,CCType)
         cursor = execute(query,data)
         return "CCNumber" + CCNumber + "CCCode" + CCCode + "ExpDate" + ExpDate + "CCType" + "CCType"
+    
     @cherrypy.expose
-    def getrecipes(self,CCNumber,CCCode,ExpDate,CCType):
+    def addingredients(self):
+        cnx = mysql.connector.connect(**config)
+        cursor = cnx.cursor()
+        query = ('INSERT INTO CreditCard(CCNumber,CCCode,CCType,ExpDate' 'VALUES(%s,%s,%s,%s)')
+        data = (CCNumber,CCCode,ExpDate,CCType)
+        cursor = execute(query,data)
+        return "CCNumber" + CCNumber + "CCCode" + CCCode + "ExpDate" + ExpDate + "CCType" + "CCType"
+    
+    @cherrypy.expose
+    def getrecipes(self):
+        cnx = mysql.connector.connect(**config)
+        cursor = cnx.cursor()
+        query = ('INSERT INTO CreditCard(CCNumber,CCCode,CCType,ExpDate' 'VALUES(%s,%s,%s,%s)')
+        data = (CCNumber,CCCode,ExpDate,CCType)
+        cursor = execute(query,data)
+        return "CCNumber" + CCNumber + "CCCode" + CCCode + "ExpDate" + ExpDate + "CCType" + "CCType"
+    
+    @cherrypy.expose
+    def getrecipes(self):
         cnx = mysql.connector.connect(**config)
         cursor = cnx.cursor()
         query = ('INSERT INTO CreditCard(CCNumber,CCCode,CCType,ExpDate' 'VALUES(%s,%s,%s,%s)')
