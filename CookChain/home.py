@@ -7,7 +7,7 @@ config =  {
 		'user': 'admin',
 		'password':'password',
 		'host':'cookchain.c54zb7ekkufg.us-west-2.rds.amazonaws.com',
-		'database':'cookchain'
+		'database':'innodb'
 }
 class HelloWorld(object):
     @cherrypy.expose
@@ -35,6 +35,14 @@ class HelloWorld(object):
     	return "username" + username + "password" + password
     @cherrypy.expose
     def creditcard(self,CCNumber,CCCode,ExpDate,CCType):
+        cnx = mysql.connector.connect(**config)
+        cursor = cnx.cursor()
+        query = ('INSERT INTO CreditCard(CCNumber,CCCode,CCType,ExpDate' 'VALUES(%s,%s,%s,%s)')
+        data = (CCNumber,CCCode,ExpDate,CCType)
+        cursor = execute(query,data)
+        return "CCNumber" + CCNumber + "CCCode" + CCCode + "ExpDate" + ExpDate + "CCType" + "CCType"
+    @cherrypy.expose
+    def getrecipes(self,CCNumber,CCCode,ExpDate,CCType):
         cnx = mysql.connector.connect(**config)
         cursor = cnx.cursor()
         query = ('INSERT INTO CreditCard(CCNumber,CCCode,CCType,ExpDate' 'VALUES(%s,%s,%s,%s)')

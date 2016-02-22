@@ -1,26 +1,6 @@
 $(function(){
-	//spoofRecipes();
-	getIngredients();
-	/*
-	Array.prototype.contains = function ( needle ) {
-	   for (var i = 0; i < this.length; i++) {
-	       if (this[i].trim() == needle.trim()) return true;
-	   }
-	   return false;
-	}
 
-	Array.prototype.containsAll = function( array ) {
-		if(array.length == 0){
-			return false;
-		}
-		for(var i=0; i<array.length; i++) {
-			if(!this.contains(array[i]))
-			{
-				return false;
-			}
-		}
-		return true;
-	}*/
+	getIngredients();
 
 	function createRecipe(recipe, time, cal, imgURL) {
 	
